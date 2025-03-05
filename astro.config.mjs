@@ -7,9 +7,10 @@ export default defineConfig({
     plugins: [
       VitePWA({
         registerType: 'autoUpdate',
-        strategies: 'injectManifest', // Se asegura de usar un Service Worker personalizado
-        srcDir: 'src', // Directorio donde está el Service Worker
-        filename: 'sw.js', // Nombre del archivo de Service Worker
+        strategies: 'injectManifest', 
+        srcDir: 'src',  // Source directory for the SW
+        swSrc: 'src/sw.js',  // Ensure this is the actual source Service Worker file
+        filename: 'sw.js',  // The built Service Worker file
         manifest: {
           name: "Mi PWA en Astro",
           short_name: "AstroPWA",
@@ -22,12 +23,12 @@ export default defineConfig({
           scope: "/",
           icons: [
             {
-              src: "/icons/favicon192.png", // RUTA CORREGIDA (debe estar en public/)
+              src: "/icons/favicon192.png",
               sizes: "192x192",
               type: "image/png"
             },
             {
-              src: "/icons/favicon512.png", // RUTA CORREGIDA
+              src: "/icons/favicon512.png",
               sizes: "512x512",
               type: "image/png"
             }
