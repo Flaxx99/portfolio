@@ -7,31 +7,20 @@ export default defineConfig({
     plugins: [
       VitePWA({
         registerType: 'autoUpdate',
-        strategies: 'injectManifest', 
-        srcDir: 'src',  // Source directory for the SW
-        swSrc: 'src/sw.js',  // Ensure this is the actual source Service Worker file
-        filename: 'sw.js',  // The built Service Worker file
+        strategies: 'generateSW', // Usa generateSW
+        workbox: {
+          cleanupOutdatedCaches: true,
+          sourcemap: false
+        },
         manifest: {
           name: "Mi PWA en Astro",
           short_name: "AstroPWA",
-          description: "Una Progressive Web App creada con Astro",
-          theme_color: "#ffffff",
-          background_color: "#ffffff",
-          display: "standalone",
-          orientation: "portrait",
           start_url: "/",
           scope: "/",
+          display: "standalone",
           icons: [
-            {
-              src: "/icons/favicon192.png",
-              sizes: "192x192",
-              type: "image/png"
-            },
-            {
-              src: "/icons/favicon512.png",
-              sizes: "512x512",
-              type: "image/png"
-            }
+            { src: "/icons/favicon192.png", sizes: "192x192", type: "image/png" },
+            { src: "/icons/favicon512.png", sizes: "512x512", type: "image/png" }
           ]
         }
       })
